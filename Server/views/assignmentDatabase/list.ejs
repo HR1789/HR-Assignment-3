@@ -1,0 +1,43 @@
+<% include ../partials/header %> <!-- Include header partial for consistent head section -->
+<% include ../partials/main_nav %>
+<main class ="container row align-items-center">
+    <div class="row">
+        <div class="offset-md-1 col-md-10">
+            <h1>Assignments</h1>
+            <br>
+            <table class="table table-bordered table-striped table-hover">
+                <!--Header Row-->
+                <tr class="d-flex">
+                    <th class="text-center col-2">Title</th>
+                    <th class="text-center col-2">Course</th>
+                    <th class="text-center col-2">Due Date</th>
+                    <th class="text-center col-2">Status</th>
+                    <th class="text-center col-2">Priority</th>
+                    <th class="text-center col-2">Actions</th>
+                </tr>
+                <!--for/while loop-->
+                <% for (let count=0; count<assignments.length; count++) { %>
+                    <tr class="d-flex">
+                        <td class="text-center col-2"><%= assignments[count].title %></td>
+                        <td class="text-center col-2"><%= assignments[count].course %></td>
+                        <td class="text-center col-2"><%= assignments[count].dueDate %></td>
+                        <td class="text-center col-2"><%= assignments[count].status %></td>
+                        <td class="text-center col-2"><%= assignments[count].priority %></td>
+                        <td class="text-center col-2">
+                            <a href="/applications/edit/<%= assignments[count]._id %>" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a href="/applications/delete/<%= assignments[count]._id %>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
+                                <i class="fas fa-trash"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                <% } %>
+            </table>
+        </div>
+    </div>
+</main>
+<br> </br>
+<br> </br>
+<% include ../partials/footer %>
+    <!-- Include footer partial for consistent sidebar section -->
