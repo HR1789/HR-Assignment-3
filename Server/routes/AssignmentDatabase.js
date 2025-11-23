@@ -1,6 +1,7 @@
+// Import Express and the Assignment model
 let express = require('express');
 let router = express.Router();
-let Assignment = require('../models/AssignmentDatabase'); // Only import once
+let Assignment = require('../models/AssignmentDatabase'); 
 
 // GET: list all assignments
 router.get('/', async (req, res) => {

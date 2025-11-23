@@ -1,3 +1,5 @@
+// Setup Express, MongoDB, and route handlers.
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
