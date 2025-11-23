@@ -11,7 +11,7 @@ let AssignmentSchema = new mongoose.Schema(
         timestamp: { type: Date, default: Date.now }
     },
     {
-        collection: "AssignmentData",
+        collection: "Assignments",
     }
 
     );
