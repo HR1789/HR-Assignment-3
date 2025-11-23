@@ -1,43 +1,46 @@
-<% include ../partials/header %> <!-- Include header partial for consistent head section -->
+<% include ../partials/header %>
 <% include ../partials/main_nav %>
-<main class ="container row align-items-center">
-    <div class="row">
-        <div class="offset-md-1 col-md-10">
-            <h1>Assignments</h1>
-            <br>
-            <table class="table table-bordered table-striped table-hover">
-                <!--Header Row-->
-                <tr class="d-flex">
-                    <th class="text-center col-2">Title</th>
-                    <th class="text-center col-2">Course</th>
-                    <th class="text-center col-2">Due Date</th>
-                    <th class="text-center col-2">Status</th>
-                    <th class="text-center col-2">Priority</th>
-                    <th class="text-center col-2">Actions</th>
-                </tr>
-                <!--for/while loop-->
-                <% for (let count=0; count<assignments.length; count++) { %>
-                    <tr class="d-flex">
-                        <td class="text-center col-2"><%= assignments[count].title %></td>
-                        <td class="text-center col-2"><%= assignments[count].course %></td>
-                        <td class="text-center col-2"><%= assignments[count].dueDate %></td>
-                        <td class="text-center col-2"><%= assignments[count].status %></td>
-                        <td class="text-center col-2"><%= assignments[count].priority %></td>
-                        <td class="text-center col-2">
-                            <a href="/applications/edit/<%= assignments[count]._id %>" class="btn btn-warning btn-sm">
-                                <i class="fas fa-edit"></i> Edit
-                            </a>
-                            <a href="/applications/delete/<%= assignments[count]._id %>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
-                                <i class="fas fa-trash"></i> Delete
-                            </a>
-                        </td>
-                    </tr>
-                <% } %>
-            </table>
-        </div>
-    </div>
-</main>
-<br> </br>
-<br> </br>
+
+<div class="container mt-5">
+  <h1 class="mb-4">Assignments</h1>
+
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Course</th>
+        <th>Due Date</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (assignments && assignments.length > 0) { %>
+        <% assignments.forEach(function(assignment) { %>
+          <tr>
+            <td><%= assignment.title %></td>
+            <td><%= assignment.course %></td>
+            <td><%= assignment.dueDate.toISOString().substring(0,10) %></td>
+            <td><%= assignment.status %></td>
+            <td><%= assignment.priority %></td>
+            <td>
+              <a href="/applications/edit/<%= assignment._id %>" class="btn btn-sm btn-primary">Edit</a>
+              <a href="/applications/delete/<%= assignment._id %>" 
+                 class="btn btn-sm btn-danger"
+                 onclick="return confirm('Are you sure you want to delete this assignment?');">
+                Delete
+              </a>
+            </td>
+          </tr>
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="6" class="text-center">No assignments found.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
 <% include ../partials/footer %>
-    <!-- Include footer partial for consistent sidebar section -->
