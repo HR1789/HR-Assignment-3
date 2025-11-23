@@ -19,11 +19,11 @@ router.get('/', (async (req, res, next) => {
 
 router.get('/add',async(req, res, next) => {
     try {
-        res.render('JobApplications/add', {title: 'Add Assignment'});
+        res.render('AssignmentDatabase/add', {title: 'Add Assignment'});
     }
     catch (err) {
         console.error(err);
-        res.render('JobApplications/add', {
+        res.render('AssignmentDatabase/add', {
             error:'Error on server'
         })
     }
