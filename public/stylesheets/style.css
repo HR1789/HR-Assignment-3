@@ -238,3 +238,65 @@ a {
 a:hover {
     color: #0ea5e9;
 }
+
+/* ============================
+   LOGIN PAGE VISIBILITY FIX
+   ============================ */
+
+/* Login card container */
+.login-card {
+    background: rgba(2, 6, 23, 0.75) !important; /* darker, more readable */
+    border: 1px solid rgba(148,163,184,0.25);
+    border-radius: 1.2rem;
+    padding: 3rem 2rem;
+    box-shadow: 0 18px 45px rgba(15,23,42,0.9);
+    backdrop-filter: blur(8px);
+}
+
+/* Main title */
+.login-card h2 {
+    color: #f1f5f9 !important; /* bright white */
+    font-weight: 700;
+}
+
+/* Subtext paragraph */
+.login-card p.subtitle {
+    color: #cbd5e1 !important; /* softer white */
+    font-size: 1rem;
+}
+
+/* Google & GitHub buttons */
+.login-provider-btn {
+    border-radius: 999px;
+    padding: 0.75rem 1rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border: 1.5px solid rgba(148,163,184,0.55);
+    background: rgba(15,23,42,0.85);
+    color: #e5e7eb !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.17s ease;
+}
+
+.login-provider-btn:hover {
+    border-color: var(--accent);
+    color: #ffffff !important;
+    background: linear-gradient(135deg, rgba(22,121,242,0.25), rgba(0,198,167,0.25));
+    box-shadow: 0 0 18px rgba(0,198,167,0.5);
+}
+
+/* Disabled GitHub button */
+.login-provider-btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Footer note */
+.login-note {
+    color: #94a3b8 !important;
+    font-size: 0.88rem;
+    margin-top: 1.5rem;
+}

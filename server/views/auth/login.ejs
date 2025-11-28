@@ -4,31 +4,37 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <div class="card shadow">
-        <div class="card-body text-center p-5">
-          <h2 class="mb-4">Login to Assignment Tracker</h2>
-          <p class="text-muted mb-4">
-            Sign in with one of the providers below to manage your assignments.
-          </p>
 
-          <div class="d-grid gap-3 mb-3">
-            <a href="/auth/google" class="btn btn-outline-primary btn-lg">
-              <i class="fab fa-google me-2"></i>
-              Continue with Google
-            </a>
+      <div class="login-card">
 
-            <a href="/auth/github" class="btn btn-outline-dark btn-lg">
-              <i class="fab fa-github me-2"></i>
-              Continue with GitHub
-            </a>
-          </div>
+        <h2 class="text-center mb-4">Login to Assignment Tracker</h2>
 
-          <p class="text-muted small mb-0">
-            You will only be able to create, edit, and delete assignments when
-            you are logged in.
-          </p>
+        <p class="subtitle text-center mb-4">
+          Sign in with one of the providers below to manage your assignments.
+        </p>
+
+        <div class="d-grid gap-3 mb-3">
+
+          <!-- Google Button -->
+          <a href="/auth/google" class="login-provider-btn">
+            <i class="fab fa-google"></i>
+            Continue with Google
+          </a>
+
+          <!-- GitHub Button -->
+          <a href="/auth/github" class="login-provider-btn">
+            <i class="fab fa-github"></i>
+            Continue with GitHub
+          </a>
+
         </div>
+
+        <p class="login-note text-center">
+          You will only be able to create, edit, and delete assignments when logged in.
+        </p>
+
       </div>
+
     </div>
   </div>
 </div>
