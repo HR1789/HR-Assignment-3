@@ -5,13 +5,22 @@ let Assignment = require('../models/AssignmentDatabase');
 
 // GET: list all assignments
 router.get('/', async (req, res) => {
-    try {
-        const assignments = await Assignment.find({});
-        res.render('AssignmentDatabase/list', { title: 'Assignments', assignments });
-    } catch (err) {
-        console.error(err);
-        res.render('AssignmentDatabase/list', { error: 'Error on server' });
-    }
+  try {
+    const assignments = await Assignment.find({});
+    res.render('AssignmentDatabase/list', {
+      title: 'Assignments',
+      assignments,
+      user: req.user || null           // 👈 add this
+    });
+  } catch (err) {
+    console.error(err);
+    res.render('AssignmentDatabase/list', {
+      title: 'Assignments',
+      assignments: [],
+      user: req.user || null,          // 👈 and this
+      error: 'Error on server'
+    });
+  }
 });
 
 // GET: Add form
