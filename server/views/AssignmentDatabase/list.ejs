@@ -2,7 +2,15 @@
 <% include ../partials/main_nav %>
 
 <div class="container mt-5">
-  <h1 class="mb-4">Assignments</h1>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Assignments</h1>
+
+    <% if (user) { %>
+      <a href="/applications/add" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Add Assignment
+      </a>
+    <% } %>
+  </div>
 
   <table class="table table-dark table-hover">
     <thead>
@@ -12,7 +20,9 @@
         <th>Due Date</th>
         <th>Status</th>
         <th>Priority</th>
-        <th>Actions</th>
+        <% if (user) { %>
+          <th>Actions</th>
+        <% } %>
       </tr>
     </thead>
     <tbody>
@@ -21,26 +31,53 @@
           <tr>
             <td><%= assignment.title %></td>
             <td><%= assignment.course %></td>
-            <td><%= assignment.dueDate.toISOString().substring(0,10) %></td>
+            <td>
+              <% if (assignment.dueDate) { %>
+                <%= new Date(assignment.dueDate).toISOString().substring(0, 10) %>
+              <% } else { %>
+                -
+              <% } %>
+            </td>
             <td><%= assignment.status %></td>
             <td><%= assignment.priority %></td>
-            <td>
-              <a href="/applications/edit/<%= assignment._id %>" class="btn btn-sm btn-primary">Edit</a>
-              <a href="/applications/delete/<%= assignment._id %>" 
-                 class="btn btn-sm btn-danger"
-                 onclick="return confirm('Are you sure you want to delete this assignment?');">
-                Delete
-              </a>
-            </td>
+
+            <% if (user) { %>
+              <td>
+                <a
+                  href="/applications/edit/<%= assignment._id %>"
+                  class="btn btn-sm btn-primary"
+                >
+                  Edit
+                </a>
+
+                <a
+                  href="/applications/delete/<%= assignment._id %>"
+                  class="btn btn-sm btn-danger"
+                  onclick="return confirm('Are you sure you want to delete this assignment?');"
+                >
+                  Delete
+                </a>
+              </td>
+            <% } %>
           </tr>
-        <% }) %>
+        <% }); %>
       <% } else { %>
         <tr>
-          <td colspan="6" class="text-center">No assignments found.</td>
+          <td colspan="<%= user ? '6' : '5' %>" class="text-center">
+            No assignments found.
+          </td>
         </tr>
       <% } %>
     </tbody>
   </table>
+
+  <% if (!user) { %>
+    <div class="alert alert-info mt-4">
+      <i class="fas fa-info-circle"></i>
+      <a href="/auth/login" class="alert-link">Login</a> to add, edit, or delete assignments.
+      You can still view all assignments without logging in.
+    </div>
+  <% } %>
 </div>
 
 <% include ../partials/footer %>
